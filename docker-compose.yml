@@ -1,0 +1,38 @@
+version: "3"
+services: 
+    auth_manager:
+        container_name: auth_manager
+        build: ./auth_manager
+        ports: 
+            - "10000:10000"
+        networks: 
+            - back
+        environment: 
+            - PORT=10000
+            - MONGO_URL=mongodb://mongo:27017/payment
+            - JWT_SECRET="paymentdemat"
+
+    transactions_manager:
+        container_name: transactions_manager
+        build: ./transactions_manager
+        ports: 
+            - "10001:10001"
+        networks: 
+            - back
+        environment: 
+            - PORT=10001
+            - MONGO_URL=mongodb://mongo:27017/payment
+            - JWT_SECRET="paymentdemat"
+
+    mongo:
+        container_name: mongo
+        image: mongo
+        ports: 
+            - "27017:27017"
+        volumes: 
+            - ./data:/data/db
+        networks: 
+            - back
+networks: 
+    back:
+        driver: bridge
