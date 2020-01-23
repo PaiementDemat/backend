@@ -104,7 +104,7 @@ const getAccounts = req => {
             if (err) reject(err);
             if (user_found) {
                 await db.collection('accounts').find({
-                    _id: { '$in': user_found.accounts }
+                    _id: { '$in': [ user_found.accounts ] }
                 }).toArray((err, list) => {
                     if (err) reject(err);
                     if (list) resolve(list)
