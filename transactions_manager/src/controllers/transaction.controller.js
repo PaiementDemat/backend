@@ -103,8 +103,8 @@ const pay = req => {
         }, (err, account_found) => {
             if (err) reject(err);
             if (account_found) {
+                console.log(account_found)
                 if (account_found.balance < amount) {
-                    console.log(account_found.balance)
                     return reject('Not enough money')
                 }
             }
