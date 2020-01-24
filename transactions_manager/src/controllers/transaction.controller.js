@@ -141,7 +141,7 @@ const pay = req => {
             if (err) reject(err);
         });
 
-        await db.collection('accounts').updateOne({
+        await db.collection('accounts').findOneAndUpdate({
             user_email: commercant_email
         }, {
             '$inc': {
