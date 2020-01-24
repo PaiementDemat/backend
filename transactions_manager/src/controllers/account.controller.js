@@ -125,6 +125,8 @@ const addMoney = req => {
         const headers = req.headers;
         const db = req.app.locals.db.payment;
 
+        if (amount < 0) return reject('Cannot handle negative value')
+
         await db.collection('accounts').updateOne({
             '_id': ObjectId(account_id)
         },{
