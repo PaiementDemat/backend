@@ -98,11 +98,13 @@ const pay = req => {
         const commercant_email = transaction_key.commercant;
         const amount = transaction_key.amount;
 
+        console.log('TEESSSSSSSSSSSSSSSTTTTTTTTTT')
+
         await db.collection('accounts').findOne({
             _id: ObjectId(payer_account)
         }, (err, account_found) => {
             if (err) reject(err);
-            console.log(account_found)
+            
             if (account_found) {
                 
                 if (account_found.balance < amount) {
