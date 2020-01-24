@@ -102,8 +102,9 @@ const pay = req => {
             _id: ObjectId(payer_account)
         }, (err, account_found) => {
             if (err) reject(err);
+            console.log(account_found)
             if (account_found) {
-                console.log(account_found)
+                
                 if (account_found.balance < amount) {
                     return reject('Not enough money')
                 }
